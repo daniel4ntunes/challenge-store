@@ -1,4 +1,9 @@
-<p align="center"><img src="https://reli.sh/wp-content/themes/relish/assets/img/services/icon-games.png" width="50" height="50" alt="Logo"> GamersXYZ</p>
+<p align="center">
+    <img src="https://reli.sh/wp-content/themes/relish/assets/img/services/icon-games.png" width="50" height="50" alt="Logo"> 
+</p>
+<p align="center">
+    <strong>GamersXYZ</strong>
+</p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
