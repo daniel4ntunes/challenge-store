@@ -2,15 +2,15 @@
     <img src="https://reli.sh/wp-content/themes/relish/assets/img/services/icon-games.png" width="50" height="50" alt="Logo"> 
 </p>
 <p align="center">
-    <strong>GamersXYZ</strong>
+    <strong>Loja Virtual GamersXYZ</strong>
 </p>
 
-<p align="center">
+<!-- <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+</p> -->
 
 ### Installation
 
@@ -34,7 +34,7 @@ docker run --rm -v $(pwd)/loja:/app -it php:alpine php app/artisan key:generate
 ```bash
 docker-compose -f loja/docker-compose.yml up -d
 ```
-<!-- - Install database (after MySQL container started):
+- Install database (after MySQL container started):
 ```bash
 docker exec -it loja-app php artisan migrate
 ```
@@ -44,6 +44,19 @@ docker exec -it loja-app php artisan db:seed
 ```
 - Run unit tests:
 ```bash
-docker run --rm -it -v $(pwd)/loja:/app phpunit/phpunit:latest --testsuit=Unit -->
+docker run --rm -it -v $(pwd)/loja:/app phpunit/phpunit:latest --testsuit=Unit
 ```
-- Access your local environment: http://172.11.0.2
+- Access your local environment: http://localhost:8081/
+
+### About
+
+#### Requirements
+
+- This app works with PHP (^7.0)
+- [Docker](https://docs.docker.com/install/) (^18.04.0-ce-rc1)
+- [docker-compose](https://docs.docker.com/compose/install/) (^1.19.0)
+
+#### Docker images
+- [mysql:latest](https://store.docker.com/images/mysql)
+- [composer:latest](https://store.docker.com/images/composer)
+- [phpunit:phpunit](https://store.docker.com/community/images/phpunit/phpunit)

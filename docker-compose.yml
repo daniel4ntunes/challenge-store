@@ -1,25 +1,8 @@
-version: '3.5' 
+version: '3.5'
 
 services:
-
-    # Main Container
-    app:
-        container_name: loja-virtual-app
-        restart: always
-        image: php:alpine
-        networks:
-            network:
-                ipv4_address: 172.11.0.2
-        volumes:
-            - .:/app
-        ports:
-            - 90:90
-        working_dir: /app
-        command: php artisan serve --host 172.11.0.2 --port 80
-
-    # Database container
     db:
-        container_name: loja-virtual-db
+        container_name: loja-db
         restart: always
         image: mysql:latest
         networks:
@@ -27,11 +10,25 @@ services:
                 ipv4_address: 172.11.0.3
         environment:
             - MYSQL_ROOT_PASSWORD=root
-            - MYSQL_DATABASE=loja-virtual_db
+            - MYSQL_DATABASE=loja_db
+
+    app:
+        container_name: loja-app
+        restart: always
+        image: ambientum/php:7.2-nginx
+        networks:
+            network:
+                ipv4_address: 172.11.0.2
+        volumes:
+            - .:/var/www/app
+        ports:
+            - "8081:8080"
+        links:
+            - db
 
 networks:
     network:
-        name: loja-vitual-network
+        name: loja-network
         driver: bridge
         ipam:
             config:
