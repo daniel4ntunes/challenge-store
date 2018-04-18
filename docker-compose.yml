@@ -1,0 +1,38 @@
+version: '3.5' 
+
+services:
+
+    # Main Container
+    app:
+        container_name: loja-virtual-app
+        restart: always
+        image: php:alpine
+        networks:
+            network:
+                ipv4_address: 172.11.0.2
+        volumes:
+            - .:/app
+        ports:
+            - 90:90
+        working_dir: /app
+        command: php artisan serve --host 172.11.0.2 --port 80
+
+    # Database container
+    db:
+        container_name: loja-virtual-db
+        restart: always
+        image: mysql:latest
+        networks:
+            network:
+                ipv4_address: 172.11.0.3
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=loja-virtual_db
+
+networks:
+    network:
+        name: loja-vitual-network
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 172.11.0.0/16
