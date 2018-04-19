@@ -28,7 +28,7 @@ cp loja/.env.example loja/.env
 ```
 - Make Laravel key;
 ```bash
-docker run --rm -v $(pwd)/loja:/app -it php:alpine php app/artisan key:generate
+docker run --rm -v $(pwd)/loja:/app -it ambientum/php:7.2-nginx php app/artisan key:generate
 ```
 - Upload containers with docker-compose (this process may take up to 35 seconds after the images download):
 ```bash
