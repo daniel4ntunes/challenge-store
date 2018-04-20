@@ -37,7 +37,7 @@
                                 <a id="minus" data-ref="m{{ $item->id }}" class="item-quantity-change">
                                     <i class="fa fa-minus-circle" aria-hidden="true"></i>
                                 </a>
-                                <input name="qtd[]" data-ref="i{{ $item->id }}" class="form-control" id="{{ $item->id }}" value="{{ $item->quantity }}">
+                                <input name="qtd[]" data-ref="i{{ $item->id }}" class="form-control standard-mask-integer" id="{{ $item->id }}" value="{{ $item->quantity }}" readonly>
                                 <a id="plus" data-ref="p{{ $item->id }}" class="item-quantity-change">
                                     <i class="fa fa-plus-circle" aria-hidden="true"></i>
                                 </a>
@@ -63,6 +63,16 @@
                     <strong class="text-primary">R$ {{ number_format($total_price, 2, ',', '.') }}</strong>
                 </div>
             </div>
+        </div><br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6 col-xs-6 pull-left">
+                    <a href="/" class="btn btn-secondary">Continuar comprando</a>
+                </div>
+                <div class="col-md-6 col-xs-6 pull-right text-right">
+                    <a href="/" class="btn btn-primary" onclick="ga('send', { hitType: 'event', eventCategory: 'order', eventAction: 'CLICK', eventLabel: 'BOTAO FECHAR PEDIDO' });">Fechar Pedido</a>
+                </div>
+            </div>
         </div>
         @else
         <div class="lead" style="margin-top:20px;">
@@ -72,16 +82,6 @@
                 <a href="/">aqui</a> e continue comprando.</p>
         </div>
         @endif
-    </div>
-</div><br>
-<div class="row">
-    <div class="col-md-12">
-        <div class="col-md-6 col-xs-6 pull-left">
-            <a href="/" class="btn btn-secondary">Continuar comprando</a>
-        </div>
-        <div class="col-md-6 col-xs-6 pull-right text-right">
-            <a href="/" class="btn btn-primary" onclick="ga('send', { hitType: 'event', eventCategory: 'order', eventAction: 'CLICK', eventLabel: 'BOTAO FECHAR PEDIDO' });">Fechar Pedido</a>
-        </div>
     </div>
 </div>
 <style>

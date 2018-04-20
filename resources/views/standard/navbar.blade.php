@@ -13,6 +13,8 @@
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
             <li class="nav-item {{ Request::is('cart') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/cart') }}">
                     <i class="fa fa-cart-plus" aria-hidden="true"></i> Carrinho
@@ -22,11 +24,11 @@
                 </a>
             </li>
         </ul>
-        @if(Request::is('/'))
+        {{-- @if(Request::is('/'))
         <form class="form-inline mt-2 mt-md-0">
             <input class="form-control mr-sm-2" type="text" name="search" aria-label="Search">
             <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
         </form>
-        @endif
+        @endif --}}
     </div>
 </nav>

@@ -7,7 +7,7 @@ useful.loading = new function() {
             onOpen: function () {
                 swal.showLoading()
             },
-                //imageUrl: '/assets/standard/images/loading.gif',
+            //imageUrl: '/assets/standard/images/loading.gif',
             showConfirmButton: false,
             allowEscapeKey: false,
             allowOutsideClick: false,

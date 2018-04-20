@@ -1,26 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Business\Cart;
 
-use App\Product;
-use App\Cart;
-use Request;
-use Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
+use App\Product;
+use App\Cart;
 
-class CartController extends Controller
+class CartBusiness
 {
-    public function index()
-    {
-        $cart = $this->read();
-
-        Session::put('qty_in_cart', $this->getQtyItemInCart());
-
-        return view('cart.index')->with('cart', $cart);
-    }
-
-    public function read()
+    public static function read()
     {
         return Cart::select(DB::raw('Cart.*, Product.name, Product.image'))
             ->join('Product', 'Product.id', '=', 'Cart.product_id')
@@ -28,10 +18,8 @@ class CartController extends Controller
             ->get();
     }
 
-    public function add()
+    public function add($id)
     {
-        $id = Request::input('id_product');
-
         $cart = Cart::where('session_id', '=', Request::session()->getId())
             ->where('product_id', '=', $id)->first();
 
@@ -49,21 +37,34 @@ class CartController extends Controller
         $cart->product_id = $id;
         $cart->date = new \DateTime();
         $cart->quantity = $this->validateQty(($cart->quantity ? $cart->quantity : 0) + 1);
-        $cart->unit_price = $product->price;
+        $cart->unit_price = $this->validateUnitPrice($product->price);
         $cart->ip = filter_input(INPUT_SERVER, 'REMOTE_ADDR');
 
-        if ($cart->save()) {
-            session()->flash('success_message', 'Produto adicionado ao carrinho!');
-        }
+        $cart->save();
 
-        return Response::json('', http_response_code())
-            ->header('Content-type', 'application/json');
+        return $cart;
     }
 
-    public function delete()
+    public function update($id, $qty)
     {
-        $id = Request::route('id_cart');
+        $cart = Cart::find($id);
 
+        if (is_null($cart)) {
+            throw new \Exception('Item não encontrado', 400);
+        }
+
+        $this->validateQty($qty);
+
+        $cart->date = new \DateTime();
+        $cart->quantity = $qty;
+
+        $cart->save();
+
+        return $cart;
+    }
+
+    public function delete($id)
+    {
         $cart = Cart::find($id);
 
         if (is_null($cart)) {
@@ -72,8 +73,7 @@ class CartController extends Controller
 
         $cart->delete();
 
-        return Response::json('', http_response_code())
-            ->header('Content-type', 'application/json');
+        return $cart;
     }
 
     public function validateQty($qty)
@@ -83,6 +83,15 @@ class CartController extends Controller
         }
 
         return $qty;
+    }
+
+    public function validateUnitPrice($price)
+    {
+        if (!$price) {
+            throw new \Exception('Produto sem preço unitário', 400);
+        }
+
+        return $price;
     }
 
     public function getQtyItemInCart()

@@ -1,5 +1,13 @@
 @extends('standard.main') @section('content')
 <div class="row">
+    <div class="input-group mb-3">
+        {{-- <form> --}}
+            <input type="text" class="form-control" name="search" aria-label="Search">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+            </div>
+        {{-- </form> --}}
+    </div>
     <div class="col-md-12">
         <div class="card-deck">
             @foreach($products->chunk(4) as $chunk)

@@ -1,11 +1,14 @@
 <?php
 
-Route::get('/', 'ProductController@index');
+Route::get('/', 'Product\ProductController@index');
 
-Route::get('/shop/{id}', 'ProductController@detail');
+Route::get('/shop/{id}', 'Product\ProductController@detail');
 
-Route::group(['prefix' => 'cart', 'as' => 'cart'], function () {
-    Route::resource('', 'CartController');
-    Route::post('', 'CartController@add');
-    Route::delete('/{id_cart}', 'CartController@delete')->where(['id_cart' => '[0-9]+']);
+Route::prefix('cart')->group(function () {
+    Route::get('', 'Cart\CartController@indexAction');
+    Route::post('', 'Cart\CartController@addAction');
+    Route::put('/{id_cart}/{qty}', 'Cart\CartController@updateAction')
+        ->where(['id_cart' => '[0-9]+', 'qty' => '[0-9]+']);
+    Route::delete('/{id_cart}', 'Cart\CartController@deleteAction')
+        ->where(['id_cart' => '[0-9]+']);
 });
