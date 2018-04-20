@@ -20,7 +20,7 @@ class ProductController extends Controller
     {
         $products = Product::select()->get();
 
-        return view('index')->with('products', $products);
+        return view('product.index')->with('products', $products);
     }
 
     public function detail()
@@ -31,6 +31,6 @@ class ProductController extends Controller
             ->where('ProductCategory.product_id', '=', $this->id)
             ->get();
 
-        return view('product')->with(['product' => $product, 'categories' => $categories]);
+        return view('product.details')->with(['product' => $product, 'categories' => $categories]);
     }
 }

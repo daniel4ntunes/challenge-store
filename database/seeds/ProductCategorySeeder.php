@@ -11,17 +11,32 @@ class ProductCategorySeeder extends Seeder
     {
         DB::table('ProductCategory')->insert([
             'product_id' => 1,
+            'category_id' => 6,
+        ]);
+
+        DB::table('ProductCategory')->insert([
+            'product_id' => 2,
             'category_id' => 3,
         ]);
 
         DB::table('ProductCategory')->insert([
-            'product_id' => 1,
-            'category_id' => 4,
+            'product_id' => 2,
+            'category_id' => 7,
         ]);
 
         DB::table('ProductCategory')->insert([
-            'product_id' => 1,
-            'category_id' => 5,
+            'product_id' => 3,
+            'category_id' => 2,
+        ]);
+
+        DB::table('ProductCategory')->insert([
+            'product_id' => 4,
+            'category_id' => 1,
+        ]);
+
+        DB::table('ProductCategory')->insert([
+            'product_id' => 4,
+            'category_id' => 3,
         ]);
     }
 }

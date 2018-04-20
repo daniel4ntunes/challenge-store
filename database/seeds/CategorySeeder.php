@@ -28,5 +28,13 @@ class CategorySeeder extends Seeder
         DB::table('Category')->insert([
             'name' => 'Guerra',
         ]);
+
+        DB::table('Category')->insert([
+            'name' => 'Tiro',
+        ]);
+
+        DB::table('Category')->insert([
+            'name' => 'RPG',
+        ]);
     }
 }

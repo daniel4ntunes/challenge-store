@@ -2,10 +2,10 @@
 
 Route::get('/', 'ProductController@index');
 
-// Route::get('/', function () {
-//     return redirect('shop');
-// });
-
-// Route::resource('shop', 'ProductController', ['only' => ['index', 'detail']]);
-
 Route::get('/shop/{id}', 'ProductController@detail');
+
+Route::group(['prefix' => 'cart', 'as' => 'cart'], function () {
+    Route::resource('', 'CartController');
+    Route::post('', 'CartController@add');
+    Route::delete('/{id_cart}', 'CartController@delete')->where(['id_cart' => '[0-9]+']);
+});
