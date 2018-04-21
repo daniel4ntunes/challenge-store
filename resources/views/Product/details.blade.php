@@ -1,7 +1,7 @@
 @extends('Standard.main') @section('content')
 <div class="row">
     <div class="col-md-2">
-        <img src="../img/{{ $product->image }}" class="img-fluid rounded" alt="{{ $product->name }}">
+        <img src="{{ asset('img/' . $product->image) }}" class="img-fluid rounded" alt="{{ $product->name }}">
     </div>
     <div class="col-md-10">
         <ul class="list-group">

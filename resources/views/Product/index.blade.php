@@ -28,7 +28,7 @@
                     </div>
                     <div class="card-footer">
                         <button onclick="Product.add('{{ $product->id }}');" class="btn btn-success pull-left">Comprar</button>
-                        <a href="{{ url('shop', [$product->id]) }}" class="btn btn-secondary pull-right">Detalhes</a>
+                        <a href="{{ url('shop/detail', [$product->id]) }}" class="btn btn-secondary pull-right">Detalhes</a>
                     </div>
                 </div>
                 @endforeach
