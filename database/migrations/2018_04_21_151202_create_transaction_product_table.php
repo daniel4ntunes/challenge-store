@@ -14,7 +14,7 @@ class CreateTransactionProductTable extends Migration
         Schema::create('TransactionProduct', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('transaction_id');
-            $table->string('name', 255);
+            $table->string('des', 255);
             $table->decimal('unit_price', 10, 2);
             $table->integer('quantity');
             $table->unsignedInteger('product_id');
