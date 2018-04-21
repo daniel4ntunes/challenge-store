@@ -14,17 +14,17 @@ class ProductController extends Controller
 
     public function __construct()
     {
-        $this->id = Request::route('id');
+        $this->id = Request::route('id_product');
     }
 
-    public function index()
+    public function indexAction()
     {
         $products = Product::select()->get();
 
-        return view('product.index')->with('products', $products);
+        return view('Product.index')->with('products', $products);
     }
 
-    public function detail()
+    public function detailAction()
     {
         $product = Product::where('id', $this->id)->first();
         $categories = ProductCategory::select(DB::raw('Category.name'))
@@ -32,6 +32,6 @@ class ProductController extends Controller
             ->where('ProductCategory.product_id', '=', $this->id)
             ->get();
 
-        return view('product.details')->with(['product' => $product, 'categories' => $categories]);
+        return view('Product.details')->with(['product' => $product, 'categories' => $categories]);
     }
 }

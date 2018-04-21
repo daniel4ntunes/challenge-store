@@ -10,8 +10,6 @@ class HtmlServiceProvider extends ServiceProvider
 {
     /**
      * Register the HTML builder instance.
-     *
-     * @return void
      */
     protected function registerHtmlBuilder()
     {
@@ -22,8 +20,6 @@ class HtmlServiceProvider extends ServiceProvider
 
     /**
      * Register the form builder instance.
-     *
-     * @return void
      */
     protected function registerFormBuilder()
     {

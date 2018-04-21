@@ -16,7 +16,7 @@ class CartController extends Controller
 
         Session::put('qty_in_cart', (new CartBusiness())->getQtyItemInCart());
 
-        return view('cart.index')->with('cart', $cart);
+        return view('Cart.index')->with('cart', $cart);
     }
 
     public function addAction()

@@ -1,4 +1,4 @@
-@extends('standard.main') @section('content')
+@extends('Standard.main') @section('content')
 <div class="row">
     <div class="col-md-2">
         <img src="../img/{{ $product->image }}" class="img-fluid rounded" alt="{{ $product->name }}">
@@ -28,8 +28,8 @@
 <hr>
 <div class="row">
     <div class="col-md-2">
-        <button onclick="product.add('{{ $product->id }}');" class="btn btn-success btn-block pull-left">Comprar</button>
+        <button onclick="Product.add('{{ $product->id }}');" class="btn btn-success btn-block pull-left">Comprar</button>
     </div>
 </div>
 
-{!! Html::script('js/product/index.js') !!} @stop
+{!! Html::script('js/Product/index.js') !!} @stop
