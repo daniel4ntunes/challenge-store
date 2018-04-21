@@ -1,8 +1,15 @@
 <?php
 
-Route::get('/', 'Product\ProductController@indexAction');
 
-Route::get('/shop/{id_product}', 'Product\ProductController@detailAction');
+Route::get('/', function () {
+    return redirect('shop');
+});
+
+Route::prefix('shop')->group(function () {
+    Route::get('', 'Product\ProductController@indexAction');
+    Route::get('/detail/{id_product}', 'Product\ProductController@detailAction')
+        ->where(['id_product' => '[0-9]+']);
+});
 
 Route::prefix('cart')->group(function () {
     Route::get('', 'Cart\CartController@indexAction');
@@ -21,3 +28,9 @@ Route::prefix('checkout')->group(function () {
 Auth::routes();
 
 Route::get('/account', 'Account\AccountController@indexAction');
+
+Route::prefix('transaction')->group(function () {
+    Route::get('', 'Transaction\TransactionController@indexAction');
+    Route::get('/detail/{id_transaction}', 'Transaction\TransactionController@detailAction')
+        ->where(['id_transaction' => '[0-9]+']);
+});
