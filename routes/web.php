@@ -15,6 +15,7 @@ Route::prefix('cart')->group(function () {
 
 Route::prefix('checkout')->group(function () {
     Route::get('', 'Checkout\CheckoutController@indexAction');
+    Route::post('/process', 'Checkout\CheckoutController@processAction');
 });
 
 Auth::routes();
