@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="../img/logo_gamersXYZ.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="{{ asset('img/logo_gamersXYZ.png') }}" type="image/png" sizes="16x16">
     
     <title>{{ config('app.name', 'GamersXYZ') }}</title>
 
@@ -13,7 +13,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('css/standard.css') }}" rel="stylesheet">
 
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
@@ -27,6 +27,7 @@
     <script src="{{ asset('js/Useful/useful.js') }}"></script>
     <script src="{{ asset('js/Useful/loading.js') }}"></script>
     <script src="{{ asset('js/Useful/mask.js') }}"></script>
+    <script src="{{ asset('js/Useful/validate.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </head>
 
