@@ -124,8 +124,8 @@ class Cart
 
     public function dieCart()
     {
-        $cart = CartModel::where('session_id', '=', Request::session()->getId());
-
+        $cart = CartModel::where('session_id', '=', Request::session()->getId())
+            ->get();
         foreach ($cart as $key => $value) {
             $this->delete($value->id);
         }

@@ -56,5 +56,7 @@ class Checkout
         }
 
         $cartBusiness->dieCart();
+
+        return $transaction;
     }
 }
