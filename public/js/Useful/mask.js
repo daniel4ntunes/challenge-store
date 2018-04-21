@@ -152,12 +152,6 @@ standard.mask = new function () {
     };
     this.string = function (e) {
     };
-    this.stringFox = function (e) {
-        $(e).bind(standard.mask.events, function () {
-            var value = $(this).val().replace(/[^(a-z 0-9)\s]/gi, "");
-            $(this).val(value);
-        });
-    };
     this.integer = function (e) {
         $(e).bind(standard.mask.events, function () {
             var value = $(this).val().replace(/\D/g, "");

@@ -1,7 +1,7 @@
 /** 
  * Product class.
  */
-let product = new function () {
+let Product = new function () {
 
     /**
      * Add to Cart method.
@@ -19,7 +19,7 @@ let product = new function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function () {
-                product.cart();
+                Product.cart();
             },
             error: function (dataReturn) {
                 var json = JSON.parse(dataReturn.responseText);

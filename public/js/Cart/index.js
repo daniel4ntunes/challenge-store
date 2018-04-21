@@ -1,7 +1,7 @@
 /** 
  * Cart class.
  */
-let cart = new function () {
+let Cart = new function () {
     this.delete = function (id_cart) {
         swal({
             title: 'Atenção!',
@@ -13,7 +13,7 @@ let cart = new function () {
             cancelButtonText: 'Cancelar',
             confirmButtonText: 'Sim, por favor!'
         }).then(function () {
-            useful.loading.show();
+            Useful.Loading.show();
             $.ajax({
                 url: '/cart/' + id_cart,
                 type: 'delete',
@@ -23,10 +23,10 @@ let cart = new function () {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function () {
-                    cart.redirect();
+                    Cart.redirect();
                 },
                 error: function (dataReturn) {
-                    useful.loading.hide();
+                    Useful.Loading.hide();
                     var json = JSON.parse(dataReturn.responseText);
                     swal({
                         title: "Opss!",
@@ -39,7 +39,7 @@ let cart = new function () {
     };
 
     this.update = function (id_cart, qty) {
-        useful.loading.show();
+        Useful.Loading.show();
         $.ajax({
             url: '/cart/' + id_cart + '/' + qty,
             type: 'put',
@@ -49,17 +49,17 @@ let cart = new function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function () {
-                cart.redirect();
+                Cart.redirect();
             },
             error: function (dataReturn) {
-                useful.loading.hide();
+                Useful.Loading.hide();
                 var json = JSON.parse(dataReturn.responseText);
                 swal({
                     title: "Opss!",
                     type: "error",
                     text: json.message
                 }).then(function () {
-                    cart.redirect();
+                    Cart.redirect();
                 });
             }
         });
@@ -67,9 +67,9 @@ let cart = new function () {
 
     this.changeItem = function (ref, qty) {
         if (0 == qty) {
-            cart.delete(ref);
+            Cart.delete(ref);
         } else {
-            cart.update(ref, qty);
+            Cart.update(ref, qty);
         }
 
     };
@@ -87,7 +87,7 @@ $(document).ready(function () {
     $('td.quantity input').on('input', function () {
         var ref = $(this).attr('id');
         var qty = $(this).val();
-        cart.changeItem(qty, ref);
+        // Cart.changeItem(ref, qty);
     });
     $('a#plus, a#minus').on('click', function () {
         var sign = $(this).attr('id');
@@ -98,7 +98,7 @@ $(document).ready(function () {
         } else if (sign == 'plus') {
             qty = parseInt(qty) + 1;
         }
-        cart.changeItem(ref, qty);
+        Cart.changeItem(ref, qty);
     });
 
 });

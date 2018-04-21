@@ -1,4 +1,4 @@
-useful.loading = new function() {
+Useful.Loading = new function() {
     this.show = function(msg) {
         msg = msg || '';
         swal({
