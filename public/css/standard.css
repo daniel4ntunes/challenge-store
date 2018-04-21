@@ -1,0 +1,43 @@
+.required>label:after {
+    content: '*';
+    color: #F00000;
+    /*font-size: 1.2rem;*/
+    margin: 0 0 0 5px;
+}
+
+td.quantity {
+    text-align: center;
+}
+
+td.quantity input {
+    height: 35px;
+    width: 40px;
+    transition: all 0.4s ease-in-out;
+    margin: 0 5px;
+    text-align: center;
+    display: inline-block;
+}
+
+td.quantity a.item-quantity-change {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+td.quantity .item-quantity-change {
+    vertical-align: middle;
+    display: inline;
+}
+
+td.remove a.item-remove {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+td.remove .item-remove {
+    vertical-align: middle;
+    display: inline;
+}
+
+table td {
+    border: none !important;
+}

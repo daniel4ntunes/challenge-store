@@ -5,14 +5,14 @@ namespace App\Http\Business\Cart;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
-use App\Product;
-use App\Cart;
+use App\Product as ProductModel;
+use App\Cart as CartModel;
 
-class CartBusiness
+class Cart
 {
     public static function read()
     {
-        return Cart::select(DB::raw('Cart.*, Product.name, Product.image'))
+        return CartModel::select(DB::raw('Cart.*, Product.name, Product.image'))
             ->join('Product', 'Product.id', '=', 'Cart.product_id')
             ->where('session_id', '=', Request::session()->getId())
             ->get();
@@ -20,14 +20,14 @@ class CartBusiness
 
     public function add($id)
     {
-        $cart = Cart::where('session_id', '=', Request::session()->getId())
+        $cart = CartModel::where('session_id', '=', Request::session()->getId())
             ->where('product_id', '=', $id)->first();
 
         if (!$cart) {
-            $cart = new Cart();
+            $cart = new CartModel();
         }
 
-        $product = Product::find($id);
+        $product = ProductModel::find($id);
 
         if (is_null($product)) {
             throw new \Exception('Produto não encontrado', 400);
@@ -47,7 +47,7 @@ class CartBusiness
 
     public function update($id, $qty)
     {
-        $cart = Cart::find($id);
+        $cart = CartModel::find($id);
 
         if (is_null($cart)) {
             throw new \Exception('Item não encontrado', 400);
@@ -65,7 +65,7 @@ class CartBusiness
 
     public function delete($id)
     {
-        $cart = Cart::find($id);
+        $cart = CartModel::find($id);
 
         if (is_null($cart)) {
             throw new \Exception('Produto não existe no carrinho de compras', 400);
@@ -87,17 +87,17 @@ class CartBusiness
 
     public function validateUnitPrice($price)
     {
-        if (!$price) {
+        if (is_null($price)) {
             throw new \Exception('Produto sem preço unitário', 400);
         }
 
         return $price;
     }
 
-    public function getQtyItemInCart()
+    public static function getQtyItemInCart()
     {
         $qty = 0;
-        $cart = Cart::where('session_id', '=', Request::session()->getId())
+        $cart = CartModel::where('session_id', '=', Request::session()->getId())
             ->get();
         if ($cart) {
             foreach ($cart as $value) {
@@ -106,5 +106,28 @@ class CartBusiness
         }
 
         return $qty;
+    }
+
+    public static function getTotalCart()
+    {
+        $total = 0;
+        $cart = CartModel::where('session_id', '=', Request::session()->getId())
+            ->get();
+        if ($cart) {
+            foreach ($cart as $value) {
+                $total += $value->unit_price * $value->quantity;
+            }
+        }
+
+        return $total;
+    }
+
+    public function dieCart()
+    {
+        $cart = CartModel::where('session_id', '=', Request::session()->getId());
+
+        foreach ($cart as $key => $value) {
+            $this->delete($value->id);
+        }
     }
 }
