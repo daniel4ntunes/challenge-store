@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
-use App\Product;
-use App\ProductCategory;
+use App\Product as ProductModel;
+use App\ProductCategory as ProductCategoryModel;
 use App\Http\Business\Cart\Cart as CartBusiness;
 
 class ProductController extends Controller
@@ -20,7 +20,7 @@ class ProductController extends Controller
 
     public function indexAction()
     {
-        $products = Product::select()->get();
+        $products = ProductModel::select()->get();
 
         session(['qty_in_cart' => CartBusiness::getQtyItemInCart()]);
 
@@ -29,8 +29,8 @@ class ProductController extends Controller
 
     public function detailAction()
     {
-        $product = Product::where('id', $this->id)->first();
-        $categories = ProductCategory::select(DB::raw('Category.name'))
+        $product = ProductModel::where('id', $this->id)->first();
+        $categories = ProductCategoryModel::select(DB::raw('Category.name'))
             ->join('Category', 'Category.id', '=', 'ProductCategory.category_id')
             ->where('ProductCategory.product_id', '=', $this->id)
             ->get();
