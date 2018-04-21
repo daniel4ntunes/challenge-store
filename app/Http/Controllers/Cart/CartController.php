@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Cart;
 
 use App\Http\Controllers\Controller;
-use App\Http\Business\Cart\CartBusiness;
+use App\Http\Business\Cart\Cart as CartBusiness;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
@@ -14,7 +14,7 @@ class CartController extends Controller
     {
         $cart = CartBusiness::read();
 
-        Session::put('qty_in_cart', (new CartBusiness())->getQtyItemInCart());
+        session(['qty_in_cart' => CartBusiness::getQtyItemInCart()]);
 
         return view('Cart.index')->with('cart', $cart);
     }

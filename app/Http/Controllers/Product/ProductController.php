@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use App\Product;
 use App\ProductCategory;
+use App\Http\Business\Cart\Cart as CartBusiness;
 
 class ProductController extends Controller
 {
@@ -20,6 +21,8 @@ class ProductController extends Controller
     public function indexAction()
     {
         $products = Product::select()->get();
+
+        session(['qty_in_cart' => CartBusiness::getQtyItemInCart()]);
 
         return view('Product.index')->with('products', $products);
     }
