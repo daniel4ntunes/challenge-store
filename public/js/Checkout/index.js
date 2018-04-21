@@ -23,7 +23,7 @@ let Checkout = new function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (dataReturn) {
-                // Useful.Loading.show();
+                window.location = dataReturn.url;
             },
             error: function (dataReturn) {
                 Useful.Loading.hide();
