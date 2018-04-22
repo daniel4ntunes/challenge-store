@@ -26,11 +26,11 @@ class Checkout
 
         $transactionAddressCreate = TransactionAddressCreate::run($transaction, $data);
 
-        $transactionAddress = TransactionAddressModel::create($transactionAddressCreate);
+        TransactionAddressModel::create($transactionAddressCreate);
 
         foreach ($cart as $value) {
             $transactionProductCreate = TransactionProductCreate::run($transaction, $value);
-            $transactionProduct = TransactionProductModel::create($transactionProductCreate);
+            TransactionProductModel::create($transactionProductCreate);
         }
 
         $cartBusiness->dieCart();
