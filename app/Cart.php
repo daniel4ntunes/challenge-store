@@ -15,4 +15,6 @@ class Cart extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    protected $fillable = ['session_id', 'product_id', 'date', 'quantity', 'unit_price', 'ip'];
 }

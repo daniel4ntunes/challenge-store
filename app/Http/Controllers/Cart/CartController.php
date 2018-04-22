@@ -35,7 +35,7 @@ class CartController extends Controller
 
     public function updateAction()
     {
-        $id = Request::route('id_cart');
+        $id = Request::route('id');
         $qty = Request::route('qty');
 
         (new CartBusiness())->update($id, $qty);
@@ -44,10 +44,8 @@ class CartController extends Controller
             ->header('Content-type', 'application/json');
     }
 
-    public function deleteAction()
+    public function deleteAction($id)
     {
-        $id = Request::route('id_cart');
-
         (new CartBusiness())->delete($id);
 
         return Response::json('', http_response_code())

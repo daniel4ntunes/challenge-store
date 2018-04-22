@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Business\Cart\Cart as CartBusiness;
 use App\Http\Business\Checkout\Checkout as CheckoutBusiness;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Response;
 
 class CheckoutController extends Controller
 {
@@ -30,8 +31,9 @@ class CheckoutController extends Controller
     {
         $data = Request::all();
 
-        $checkoutBusiness = new CheckoutBusiness();
+        (new CheckoutBusiness())->run($data);
 
-        $checkoutBusiness->run($data);
+        return Response::json(['url' => '/transaction'], http_response_code())
+            ->header('Content-type', 'application/json');
     }
 }

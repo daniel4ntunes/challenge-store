@@ -38,6 +38,6 @@ td.remove .item-remove {
     display: inline;
 }
 
-table td {
+table.table-cart td {
     border: none !important;
 }

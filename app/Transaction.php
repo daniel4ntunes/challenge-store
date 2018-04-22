@@ -15,4 +15,11 @@ class Transaction extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * @var date
+     */
+    protected $dates = [
+        'date_added',
+    ];
 }

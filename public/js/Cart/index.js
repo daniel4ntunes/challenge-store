@@ -87,7 +87,7 @@ $(document).ready(function () {
     $('td.quantity input').on('input', function () {
         var ref = $(this).attr('id');
         var qty = $(this).val();
-        // Cart.changeItem(ref, qty);
+        Cart.changeItem(ref, qty);
     });
     $('a#plus, a#minus').on('click', function () {
         var sign = $(this).attr('id');
