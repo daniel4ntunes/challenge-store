@@ -15,4 +15,8 @@ class TransactionProduct extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    protected $fillable = [
+        'transaction_id', 'des', 'unit_price', 'quantity', 'product_id',
+    ];
 }

@@ -15,4 +15,6 @@ class Customer extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    protected $fillable = ['name', 'email', 'cpf', 'phone'];
 }

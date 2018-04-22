@@ -15,4 +15,8 @@ class TransactionAddress extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    protected $fillable = [
+        'transaction_id', 'zipcode', 'street', 'number', 'complement', 'neighbourhood', 'city', 'state',
+    ];
 }

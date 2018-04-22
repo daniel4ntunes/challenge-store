@@ -16,10 +16,9 @@ class Transaction extends Model
      */
     public $timestamps = false;
 
-    /**
-     * @var date
-     */
     protected $dates = [
         'date_added',
     ];
+
+    protected $fillable = ['date_added', 'customer_id', 'total'];
 }
