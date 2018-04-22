@@ -1,6 +1,5 @@
 <?php
 
-
 Route::get('/', function () {
     return redirect('shop');
 });

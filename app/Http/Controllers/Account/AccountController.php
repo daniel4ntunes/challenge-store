@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
+use App\Http\Business\Cart\Cart as CartBusiness;
 
 class AccountController extends Controller
 {
@@ -13,6 +14,8 @@ class AccountController extends Controller
 
     public function indexAction()
     {
+        session(['qty_in_cart' => CartBusiness::getQtyItemInCart()]);
+
         return view('Account.index');
     }
 }
