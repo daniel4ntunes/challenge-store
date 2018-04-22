@@ -1,16 +1,7 @@
-<p align="center">
-    <img src="https://reli.sh/wp-content/themes/relish/assets/img/services/icon-games.png" width="50" height="50" alt="Logo"> 
-</p>
-<p align="center">
-    <strong>Loja Virtual GamersXYZ</strong>
-</p>
+<p align="center"><strong>Loja Virtual GamersXYZ</strong></p>
 
-<!-- <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p> -->
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/DanielAntunes97/loja/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/DanielAntunes97/loja/?branch=master)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/DanielAntunes97/loja/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 
 ### Installation
 
