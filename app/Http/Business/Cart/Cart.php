@@ -29,7 +29,7 @@ class Cart
 
         $product = ProductModel::find($id);
 
-        if (is_null($product)) {
+        if (empty($product)) {
             throw new \Exception('Produto não encontrado', 400);
         }
 
@@ -49,7 +49,7 @@ class Cart
     {
         $cart = CartModel::find($id);
 
-        if (is_null($cart)) {
+        if (empty($cart)) {
             throw new \Exception('Item não encontrado', 400);
         }
 
@@ -67,7 +67,7 @@ class Cart
     {
         $cart = CartModel::find($id);
 
-        if (is_null($cart)) {
+        if (empty($cart)) {
             throw new \Exception('Produto não existe no carrinho de compras', 400);
         }
 
@@ -87,7 +87,7 @@ class Cart
 
     public function validateUnitPrice($price)
     {
-        if (is_null($price)) {
+        if (empty($price)) {
             throw new \Exception('Produto sem preço unitário', 400);
         }
 

@@ -16,43 +16,21 @@ class Checkout
 
         $cart = CartBusiness::read();
 
-        $customer = new CustomerModel();
-        $customer->name = $data['name'];
-        $customer->cpf = $data['cpf'];
-        $customer->phone = $data['phone'];
-        $customer->save();
+        $customerCreate = CustomerCreate::run($data);
 
-        $transaction = new TransactionModel();
+        $customer = CustomerModel::create($customerCreate);
 
-        if ($customer->id) {
-            $transaction->date_added = new \DateTime();
-            $transaction->customer_id = $customer->id;
-            $transaction->total = CartBusiness::getTotalCart();
-            $transaction->save();
-        }
+        $transactionCreate = TransactionCreate::run($customer);
 
-        $transactionAddress = new TransactionAddressModel();
+        $transaction = TransactionModel::create($transactionCreate);
 
-        if ($transaction->id) {
-            $transactionAddress->transaction_id = $transaction->id;
-            $transactionAddress->zipcode = str_replace('-', '', $data['zipcode']);
-            $transactionAddress->street = $data['street'];
-            $transactionAddress->number = $data['number'];
-            $transactionAddress->complement = $data['complement'];
-            $transactionAddress->neighbourhood = $data['neighbourhood'];
-            $transactionAddress->city = $data['city'];
-            $transactionAddress->state = $data['state'];
-            $transactionAddress->save();
+        $transactionAddressCreate = TransactionAddressCreate::run($transaction, $data);
 
-            foreach ($cart as $value) {
-                $transactionProduct = new TransactionProductModel();
-                $transactionProduct->transaction_id = $transaction->id;
-                $transactionProduct->des = $value->name;
-                $transactionProduct->unit_price = $value->unit_price;
-                $transactionProduct->quantity = $value->quantity;
-                $transactionProduct->product_id = $value->product_id;
-                $transactionProduct->save();
-            }
+        $transactionAddress = TransactionAddressModel::create($transactionAddressCreate);
+
+        foreach ($cart as $value) {
+            $transactionProductCreate = TransactionProductCreate::run($transaction, $value);
+            $transactionProduct = TransactionProductModel::create($transactionProductCreate);
         }
 
         $cartBusiness->dieCart();
