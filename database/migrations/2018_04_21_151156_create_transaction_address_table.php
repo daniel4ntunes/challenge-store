@@ -17,7 +17,7 @@ class CreateTransactionAddressTable extends Migration
             $table->string('zipcode', 8);
             $table->string('street', 255);
             $table->string('number', 20);
-            $table->string('complement', 100);
+            $table->string('complement', 100)->nullable();
             $table->string('neighbourhood', 150);
             $table->string('city', 100);
             $table->string('state', 100);
