@@ -17,6 +17,8 @@
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <strong>Nome Completo:</strong> {{ $transaction->name }}</li>
+                                <li class="list-group-item">
+                                <strong>E-mail:</strong> <a href="mailto:{{ $transaction->email }}">{{ $transaction->email }}</a></li>
                             <li class="list-group-item">
                                 <strong>CPF:</strong> {{ $transaction->cpf }}</li>
                             <li class="list-group-item">
