@@ -7,19 +7,24 @@
                     <h6 class="card-header">Login</h6>
                     <div class="card-body">
                         <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                            {{ csrf_field() }}
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="control-label">E-mail</label>
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus> @if ($errors->has('email'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('email') }}</strong>
+                            {{ csrf_field() }} 
+                            @if(session()->has('login_error'))
+                                <div class="alert alert-danger">
+                                    {{ session()->get('login_error') }}
+                                </div>
+                            @endif
+                            <div class="form-group{{ $errors->has('identity') ? ' is-invalid' : '' }}">
+                                <label for="identity" class="control-label">E-mail ou Nome</label>
+                                <input id="identity" type="identity" class="form-control" name="identity" value="{{ old('identity') }}" autofocus> @if ($errors->has('identity'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('identity') }}</strong>
                                 </span>
                                 @endif
                             </div>
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="control-label">Password</label>
-                                <input id="password" type="password" class="form-control" name="password" required> @if ($errors->has('password'))
-                                <span class="help-block">
+                            <div class="form-group{{ $errors->has('password') ? ' is-invalid' : '' }}">
+                                <label for="password" class="control-label">Senha</label>
+                                <input id="password" type="password" class="form-control" name="password"> @if ($errors->has('password'))
+                                <span class="invalid-feedback">
                                     <strong>{{ $errors->first('password') }}</strong>
                                 </span>
                                 @endif
