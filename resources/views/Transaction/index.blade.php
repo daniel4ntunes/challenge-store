@@ -34,9 +34,9 @@
                 <tbody>
                     @forelse ($transactions as $transaction)
                     <tr>
-                        <td>{{ Carbon\Carbon::parse($transaction->date_added)->format('d/m/Y H:i:s') }}</td>
+                        <td>{{ $transaction->date_added->format('d/m/Y H:i:s') }}</td>
                         <td>{{ $transaction->id }}</td>
-                        <td>R$ {{ number_format($transaction->total, 2, ',', '.') }}</td>
+                        <td>R${{ number_format($transaction->total, 2, ',', '.') }}</td>
                         <td>
                             <a href="{{ url('transaction/detail', [$transaction->id]) }}" class="btn btn-secondary">Detalhes</a>
                         </td>
