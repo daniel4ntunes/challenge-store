@@ -7,11 +7,17 @@
         <ul class="list-group">
             <li class="list-group-item">
                 <strong class="text-success">{{ $product->name }}</strong>
+                <span class="pull-right">
+                    <a href="/" class="btn-sm">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <i class="fa fa-angle-left" aria-hidden="true"></i> voltar
+                    </a>
+                </span>
             </li>
             <li class="list-group-item">
                 <strong>Descrição:</strong> {{ $product->description }}</li>
             <li class="list-group-item">
-                <strong>Preço:</strong> R$ {{ number_format($product->price, 2, ',', '.') }}</li>
+                <strong>Preço:</strong> R${{ number_format($product->price, 2, ',', '.') }}</li>
             @if(!$categories->isEmpty())
             <li class="list-group-item">
                 <strong>Categoria:</strong>
