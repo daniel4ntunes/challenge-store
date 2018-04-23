@@ -24,7 +24,7 @@ Route::prefix('checkout')->group(function () {
     Route::post('/process', 'Checkout\CheckoutController@processAction');
 });
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/account', 'Account\AccountController@indexAction');
 

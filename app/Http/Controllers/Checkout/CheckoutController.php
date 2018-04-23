@@ -19,9 +19,8 @@ class CheckoutController extends Controller
     {
         $cart = CartBusiness::read();
 
-        if (empty($cart)) {
-            header('Location: /cart', true, 302);
-            exit;
+        if ($cart->isEmpty()) {
+            return redirect('cart');
         }
 
         return view('Checkout.index');

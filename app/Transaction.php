@@ -21,4 +21,19 @@ class Transaction extends Model
     ];
 
     protected $fillable = ['date_added', 'customer_id', 'total'];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function address()
+    {
+        return $this->hasOne(TransactionAddress::class);
+    }
+
+    public function product()
+    {
+        return $this->hasMany(TransactionProduct::class);
+    }
 }

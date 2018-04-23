@@ -13,12 +13,11 @@ class CreateTransactionProductTable extends Migration
     {
         Schema::create('TransactionProduct', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('transaction_id');
+            $table->integer('transaction_id');
             $table->string('des', 255);
             $table->decimal('unit_price', 10, 2);
             $table->integer('quantity');
-            $table->unsignedInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('Product');
+            $table->integer('product_id');
         });
     }
 

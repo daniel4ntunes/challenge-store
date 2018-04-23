@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 use App\Product as ProductModel;
-use App\ProductCategory as ProductCategoryModel;
 use App\Http\Business\Cart\Cart as CartBusiness;
+use Illuminate\Support\Facades\Request;
 
 class ProductController extends Controller
 {
@@ -16,7 +15,15 @@ class ProductController extends Controller
 
         session(['qty_in_cart' => CartBusiness::getQtyItemInCart()]);
 
-        return view('Product.index')->with('products', $products);
+        $search = Request::get('search');
+
+        if (!empty($search)) {
+            $products = ProductModel::where('name', 'like', '%'.$search.'%')
+                ->orderBy('name')
+                ->get();
+        }
+
+        return view('Product.index')->with(['products' => $products, 'search' => $search]);
     }
 
     public function detailAction($id)
@@ -27,11 +34,6 @@ class ProductController extends Controller
             throw new \Exception('Item não encontrado', 400);
         }
 
-        $categories = ProductCategoryModel::select(DB::raw('Category.name'))
-            ->join('Category', 'Category.id', '=', 'ProductCategory.category_id')
-            ->where('ProductCategory.product_id', '=', $id)
-            ->get();
-
-        return view('Product.details')->with(['product' => $product, 'categories' => $categories]);
+        return view('Product.details')->with(['product' => $product]);
     }
 }

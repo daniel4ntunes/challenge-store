@@ -18,4 +18,9 @@ class Product extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

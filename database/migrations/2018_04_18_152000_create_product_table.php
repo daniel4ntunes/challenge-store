@@ -17,6 +17,7 @@ class CreateProductTable extends Migration
             $table->string('description', 150);
             $table->string('image', 150);
             $table->decimal('price', 10, 2);
+            $table->integer('category_id');
         });
     }
 

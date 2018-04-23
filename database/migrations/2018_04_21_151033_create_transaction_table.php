@@ -14,9 +14,8 @@ class CreateTransactionTable extends Migration
         Schema::create('Transaction', function (Blueprint $table) {
             $table->increments('id');
             $table->dateTime('date_added');
-            $table->unsignedInteger('customer_id');
+            $table->integer('customer_id');
             $table->decimal('total', 10, 2);
-            $table->foreign('customer_id')->references('id')->on('Customer');
         });
     }
 

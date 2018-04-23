@@ -16,13 +16,13 @@
                     <div class="col-md-12">
                         <ul class="list-group">
                             <li class="list-group-item">
-                                <strong>Nome Completo:</strong> {{ $transaction->name }}</li>
+                                <strong>Nome Completo:</strong> {{ $transaction->customer->name }}</li>
                                 <li class="list-group-item">
-                                <strong>E-mail:</strong> <a href="mailto:{{ $transaction->email }}">{{ $transaction->email }}</a></li>
+                                <strong>E-mail:</strong> <a href="mailto:{{ $transaction->customer->email }}">{{ $transaction->customer->email }}</a></li>
                             <li class="list-group-item">
-                                <strong>CPF:</strong> {{ $transaction->cpf }}</li>
+                                <strong>CPF:</strong> {{ $transaction->customer->cpf }}</li>
                             <li class="list-group-item">
-                                <strong>Celular:</strong> {{ $transaction->phone }}</li>
+                                <strong>Celular:</strong> {{ $transaction->customer->phone }}</li>
                         </ul>
                     </div>
                 </div>
@@ -41,13 +41,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php $total_price = 0 @endphp @foreach ($transactionProducts as $transactionProduct)
+                                        @php $total_price = 0 @endphp 
+                                        @foreach ($transaction->product as $item)
                                         <tr>
-                                            @php $sub_total_price = $transactionProduct->unit_price * $transactionProduct->quantity @endphp @php $total_price = $total_price
-                                            + $sub_total_price @endphp
-                                            <td>{{ $transactionProduct->des }}</td>
-                                            <td class="text-center">{{ $transactionProduct->quantity }}</td>
-                                            <td class="text-right">R${{ number_format($transactionProduct->unit_price, 2, ',', '.') }}
+                                            @php $sub_total_price = $item->unit_price * $item->quantity @endphp 
+                                            @php $total_price = $total_price + $sub_total_price @endphp
+                                            <td>{{ $item->des }}</td>
+                                            <td class="text-center">{{ $item->quantity }}</td>
+                                            <td class="text-right">R${{ number_format($item->unit_price, 2, ',', '.') }}
                                         </tr>
                                         @endforeach
                                         <tr>
@@ -69,21 +70,21 @@
                             <div class="card-header">Endereço de Entrega</div>
                             <div class="card-body">
                                 <p>
-                                    <strong>CEP:</strong> {{ $transactionAddress->zipcode }}</p>
+                                    <strong>CEP:</strong> {{ $transaction->address->zipcode }}</p>
                                 </p>
                                 <p>
-                                    <strong>ENDEREÇO:</strong> {{ $transactionAddress->street }}</p>
+                                    <strong>ENDEREÇO:</strong> {{ $transaction->address->street }}</p>
                                 </p>
-                                @if($transactionAddress->complement != '')
+                                @if($transaction->address->complement != '')
                                 <p>
-                                    <strong>COMPLEMENTO:</strong> {{ $transactionAddress->complement }}</p>
+                                    <strong>COMPLEMENTO:</strong> {{ $transaction->address->complement }}</p>
                                 </p>
                                 @endif
                                 <p>
-                                    <strong>BAIRRO:</strong> {{ $transactionAddress->neighbourhood }}</p>
+                                    <strong>BAIRRO:</strong> {{ $transaction->address->neighbourhood }}</p>
                                 </p>
                                 <p>
-                                    <strong>CIDADE/UF:</strong> {{ $transactionAddress->city }} / {{ $transactionAddress->state }}</p>
+                                    <strong>CIDADE/UF:</strong> {{ $transaction->address->city }}/{{ $transaction->address->state }}</p>
                                 </p>
                             </div>
                         </div>

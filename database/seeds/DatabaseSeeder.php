@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ProductSeeder::class,
             CategorySeeder::class,
-            ProductCategorySeeder::class,
         ]);
 
         // Model::reguard();

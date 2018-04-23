@@ -18,16 +18,9 @@
                 <strong>Descrição:</strong> {{ $product->description }}</li>
             <li class="list-group-item">
                 <strong>Preço:</strong> R${{ number_format($product->price, 2, ',', '.') }}</li>
-            @if(!$categories->isEmpty())
             <li class="list-group-item">
-                <strong>Categoria:</strong>
-                @foreach($categories as $category)
-                <ul>
-                    <li>{{ $category->name }}</li>
-                </ul>
-                @endforeach
+                <strong>Categoria:</strong> {{ $product->category->name }}
             </li>
-            @endif
         </ul>
     </div>
 </div>

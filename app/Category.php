@@ -15,4 +15,9 @@ class Category extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
