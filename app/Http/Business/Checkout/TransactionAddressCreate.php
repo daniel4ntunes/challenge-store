@@ -2,8 +2,6 @@
 
 namespace App\Http\Business\Checkout;
 
-use Illuminate\Support\Facades\Validator;
-
 class TransactionAddressCreate
 {
     public static function run($transaction, $data)
@@ -19,19 +17,7 @@ class TransactionAddressCreate
             'state' => $data['state'],
         ];
 
-        $validator = Validator::make($transactionAddress, [
-            'transaction_id' => 'required',
-            'zipcode' => 'required',
-            'street' => 'required',
-            'number' => 'required',
-            'neighbourhood' => 'required',
-            'city' => 'required',
-            'state' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            throw new \Exception('Campos Obrigatórios', 400);
-        }
+        TransactionProductValidator::run($transactionAddress);
 
         return $transactionAddress;
     }

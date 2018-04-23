@@ -2,7 +2,6 @@
 
 namespace App\Http\Business\Checkout;
 
-use Illuminate\Support\Facades\Validator;
 use App\Http\Business\Cart\Cart as CartBusiness;
 
 class TransactionCreate
@@ -15,15 +14,7 @@ class TransactionCreate
             'total' => CartBusiness::getTotalCart(),
         ];
 
-        $validator = Validator::make($transaction, [
-            'date_added' => 'required',
-            'customer_id' => 'required',
-            'total' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            throw new \Exception('Campos Obrigatórios', 400);
-        }
+        TransactionValidator::run($transaction);
 
         return $transaction;
     }

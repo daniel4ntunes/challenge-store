@@ -2,8 +2,6 @@
 
 namespace App\Http\Business\Checkout;
 
-use Illuminate\Support\Facades\Validator;
-
 class TransactionProductCreate
 {
     public static function run($transaction, $value)
@@ -16,17 +14,7 @@ class TransactionProductCreate
             'product_id' => $value->product_id,
         ];
 
-        $validator = Validator::make($transactionProduct, [
-            'transaction_id' => 'required',
-            'des' => 'required',
-            'unit_price' => 'required',
-            'quantity' => 'required',
-            'product_id' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            throw new \Exception('Campos Obrigatórios', 400);
-        }
+        TransactionProductValidator::run($transactionProduct);
 
         return $transactionProduct;
     }
