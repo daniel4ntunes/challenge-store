@@ -19,7 +19,12 @@
             <li class="list-group-item">
                 <strong>Preço:</strong> R${{ number_format($product->price, 2, ',', '.') }}</li>
             <li class="list-group-item">
-                <strong>Categoria:</strong> {{ $product->category->name }}
+                <strong>Categorias:</strong> 
+                <ul>
+                    @foreach($categories as $category)
+                        <li>{{ $category->name }}</li>
+                    @endforeach
+                </ul>
             </li>
         </ul>
     </div>
