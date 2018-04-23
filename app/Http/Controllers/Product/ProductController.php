@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Product as ProductModel;
 use Illuminate\Support\Facades\Request;
 use App\ProductCategory as ProductCategoryModel;
+use App\Http\Business\Cart\Cart as CartBusiness;
 
 class ProductController extends Controller
 {
