@@ -29,7 +29,7 @@
                     @php $total_price = 0 @endphp @foreach ($cart as $item)
                     <tr>
                         <td>
-                            <a href="{{ url('shop', [$item->product_id]) }}" class="text-primary">{{ $item->name }}</a>
+                            <a href="{{ url('shop/detail', [$item->product_id]) }}" class="text-primary">{{ $item->name }}</a>
                         </td>
                         <td>R${{ number_format($item->unit_price, 2, ',', '.') }}</td>
                         <td class="quantity">
