@@ -26,6 +26,14 @@
                     @endforeach
                 </ul>
             </li>
+            <li class="list-group-item">
+                <strong>Caracteristicas:</strong> 
+                <ul>
+                    @foreach($characteristic as $item)
+                        <li><strong>{{ $item->title }}: </strong>{{ $item->des }}</li>
+                    @endforeach
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
