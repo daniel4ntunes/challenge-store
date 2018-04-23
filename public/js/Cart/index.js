@@ -39,7 +39,6 @@ let Cart = new function () {
     };
 
     this.update = function (id_cart, qty) {
-        Useful.Loading.show();
         $.ajax({
             url: '/cart/' + id_cart + '/' + qty,
             type: 'put',
@@ -52,7 +51,6 @@ let Cart = new function () {
                 Cart.redirect();
             },
             error: function (dataReturn) {
-                Useful.Loading.hide();
                 var json = JSON.parse(dataReturn.responseText);
                 swal({
                     title: "Opss!",

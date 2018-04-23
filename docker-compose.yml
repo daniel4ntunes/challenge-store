@@ -5,7 +5,7 @@ services:
     db:
         container_name: loja-db
         restart: always
-        image: mysql:latest
+        image: "mysql:5.6"
         networks:
             network:
                 ipv4_address: 172.11.0.3
