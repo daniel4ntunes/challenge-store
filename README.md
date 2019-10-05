@@ -60,5 +60,4 @@ foo@bar:~$ docker run --rm -it -v $(pwd):/app phpunit/phpunit:latest --testsuit=
 
 👤 **Daniel Antunes**
 
-* Github: [@msfidelis](https://github.com/msfidelis)
 * E-mail: <daniel.antunes1697@gmail.com>
