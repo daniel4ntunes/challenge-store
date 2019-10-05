@@ -56,6 +56,9 @@ foo@bar:~$ docker run --rm -it -v $(pwd):/app phpunit/phpunit:latest --testsuit=
 - [composer:latest](https://store.docker.com/images/composer)
 - [phpunit:phpunit](https://store.docker.com/community/images/phpunit/phpunit)
 
-### Author
+## Author
 
-Daniel Antunes - <daniel.antunes1697@gmail.com>
+👤 **Daniel Antunes**
+
+* Github: [@msfidelis](https://github.com/msfidelis)
+* E-mail: <daniel.antunes1697@gmail.com>
