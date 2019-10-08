@@ -1,6 +1,6 @@
 <h1 align="center">:video_game: Store GamersXYZ :computer:</h1>
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/DanielAntunes97/loja/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/DanielAntunes97/challenge-store/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/DanielAntunes97/challenge-store/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/DanielAntunes97/challenge-store/?branch=master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/DanielAntunes97/challenge-store/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 
 ## Installation
